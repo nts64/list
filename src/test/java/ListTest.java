@@ -13,6 +13,7 @@ import static java.util.stream.IntStream.rangeClosed;
 import static org.hamcrest.CoreMatchers.is;
 import static org.hamcrest.CoreMatchers.nullValue;
 import static org.junit.Assert.*;
+import static org.junit.Assume.assumeFalse;
 
 /**
  * Run the same tests against all three AList implementations.
@@ -135,6 +136,7 @@ public class ListTest {
 
     @Test
     public void largeList() {
+        assumeFalse(listClass == ABasicList.class);
         int max = 200000;
         int evenCount = listOf(rangeClosed(1, max).boxed().toArray(Integer[]::new))
                               .reverse()

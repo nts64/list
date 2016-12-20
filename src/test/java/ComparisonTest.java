@@ -2,6 +2,8 @@ import nts.ALinkedList;
 import nts.AList;
 import nts.AnArrayList;
 import nts.MyList;
+import org.junit.BeforeClass;
+import org.junit.Ignore;
 import org.junit.Test;
 
 import java.math.BigInteger;
@@ -14,16 +16,25 @@ import static org.junit.Assert.assertThat;
 
 /**
  * Create a list with SIZE elements, reverse, filter and sum the elements in a BigInteger.
+ *
  * Very rough comparison test, just to catch severe performance issues.
  *
  * A proper benchmark would be implemented using JMH.
  */
+@Ignore("too slow")
 public class ComparisonTest {
 
     private final static int SIZE = 10_000_000;
     private final static int RUNS = 10;
     private final static BigInteger EXPECTED = BigInteger.valueOf(2941178529410L);
     private final static Integer[] elements = rangeClosed(0, SIZE).boxed().toArray(Integer[]::new);
+
+    @BeforeClass
+    public static void warmUp(){
+        ComparisonTest test = new ComparisonTest();
+        test.anArrayList();
+        test.aLinkedList();
+    }
 
     @Test
     public void myList() {

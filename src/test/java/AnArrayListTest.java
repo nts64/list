@@ -57,7 +57,7 @@ public class AnArrayListTest {
 
     @Test(expected = AList.CreationFailed.class)
     public void testCreationFail() {
-        AList<Object> biggy = AnArrayList.of(new Byte[AnArrayList.MAX_SIZE]);
+        AList<Byte> biggy = AnArrayList.of(new Byte[AnArrayList.MAX_SIZE]);
         biggy.factory().create(null, biggy);
     }
 }
